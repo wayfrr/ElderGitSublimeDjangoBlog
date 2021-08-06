@@ -6,15 +6,20 @@
  
 
 {% if user.is_authenticated %}
-	<h1>Update Post.....</h1>
-	<br/><br/>
+	{% if user.id == post.author.id %}
 
-	<div class="mb-3">
-		<form method = "POST">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<button class="btn btn-secondary">Update</button>
-	</div>
+		<h1>Update Post....</h1>
+		<br/><br/>
+
+		<div class="mb-3">
+			<form method = "POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-secondary">Update</button>
+		</div>
+	{% else %}
+		You are not allowed here! (and you know it.....)
+	{% endif %}
 {% else %}
 
 	You are not allowed here! (and you know it.....)
