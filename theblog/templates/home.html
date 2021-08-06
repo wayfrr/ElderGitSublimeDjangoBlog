@@ -14,6 +14,8 @@
 
 	<li>
 		<a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+
+		 - <a href="{% url 'category' post.category|slugify %}">{{post.category}}</a>
 		 - {{ post.author.first_name }} {{ post.author.last_name }}
 		 - {{ post.post_date }} 
 		 <small>
@@ -25,9 +27,10 @@
 
 		 </small>
 		 <br/>
-		{{ post.body|slice:":200" }}
+		{{ post.body|slice:":200"|safe }}
 	</li>
 {% endfor %}
 </ul>
+
 
 {% endblock %}
