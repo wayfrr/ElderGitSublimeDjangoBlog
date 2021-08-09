@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block title %}{{ post.title_tag }} {% endblock %}
 
@@ -63,7 +65,13 @@
 <div class="card mb-3" >
   <div class="row g-0">
     <div class="col-md-2">
-      <img src="{{ post.author.profile.profile_pic.url}}" class="img-fluid rounded-start"  >
+    {% if post.author.profile.profile_pic %}
+      <img src="{{ post.author.profile.profile_pic.url}}" class="img-fluid rounded-start">
+    {% else %}
+    	<img src="{% static 'theblog/images/NN-BGreen-80x80.png' %}" class="img-fluid rounded-start">
+   
+
+    {% endif %}
     </div>
     <div class="col-md-10">
       <div class="card-body">
@@ -73,8 +81,10 @@
 		</h5>
 		<p class="small text-muted">
 
+			<a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a> 
+
 			{% if post.author.profile.website_url %}
-        		<a href="{{ post.author.profile.website_url}}">Website</a> 
+        		| <a href="{{ post.author.profile.website_url}}">Website</a> 
         	{% endif %}
 
         	{% if post.author.profile.facebook_url %}
