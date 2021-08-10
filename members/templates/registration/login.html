@@ -10,11 +10,24 @@
 <br/><br/>
 
 <div class="mb-3">
-<form method = "POST">
-	{% csrf_token %}
-	{{ form.as_p }}
+	<form method = "POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+	
+	
+
+
+<br/><br/>
 	<button class="btn btn-secondary">Login</button>
 
+		</form>
+
+<br/><br/>
+
+
+
+
+	Not Registered ? Sign Up Here....<a href="{% url 'register' %}">Here...</a>
 </div>
 
 {% endblock %}
